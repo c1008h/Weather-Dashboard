@@ -1,4 +1,5 @@
 # Weather-Dashboard
+<img src="assets/images/dashboard.png" alt="Screenshot of Dashboard Weather main page.">
 
 ## Project Description
     This is a weather dashboard that displays information about the weather of the city that the user inputs. It's great for traveling or planning to travel, or even just daily use to decide on what your outfit should be. 
