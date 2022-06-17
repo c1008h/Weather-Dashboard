@@ -5,37 +5,45 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href = 'assets/css/style.css' >
     <title>Weather Dashboard</title>
 </head>
 <body>
     <header class="bg-dark text-white text-center p-2">
         <h1>Weather Dashboard</h1>
     </header>
-    <main class="container-fluid">
-        <div class="row">
-            <div class="col-12 col-md-3 p-2 search-column">
-                <form class="border p-2" id="city-search-form">
-                    <h4>Search for a city</h4>
-                    <input id="city" type="text" autofocus="true" class="form-input"/>
-                    <button class="btn btn-primary" type="submit">Search</button>
-                </form>
-                <div class="past-search border" id="past-search-buttons"></div>
-            </div>
-            <div class="col-12 col-md-9">
-                <div class="row border selected-city" id="current-forecast">
-                    <div class="col-12">
-                        <h2 id="searched-city"></h2>
-                        <div id="current-weather-container" class="list-group"></div>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-4" id="left-side">
+                    <div class="col" id="search-side">    
+                        <h3 class="col"><strong>Search for a City:</strong></h3>
+                        <input id="cityInput" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                        <button type="button" id="searchBtn" class="col-12 btn btn-outline-primary">Search</button>
+                        <div class='col-12' id="border-bottom"></div>
+                        <div class="col-12" id="history">
+
+                        </div>
                     </div>
                 </div>
-                <div class="row border" id="five-day-forecast">
-                    <h2 class="col-12" id="forecast"></h2>
-                    <div class="d-flex" id="fiveday-container"></div>
+
+                <div class="col-12 col-md-8" id="right-side">
+                    <div class="col m-1" id="display-side">
+                        <div id="city-info"></div>
+                        <div id="forecast">
+                            <h3><strong>5-Day Forecast:</strong></h3>
+                            <div class="row" id="fiveday">
+
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </div>    
         </div>
+
     </main>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
