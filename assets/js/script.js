@@ -22,7 +22,7 @@ function searchButton () {
 }
 
 function findCords(city) {
-    var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + ApiKey;
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + ApiKey;
 
     fetch(queryURL)
     .then(response => response.json())
