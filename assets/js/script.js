@@ -130,9 +130,13 @@ function displayForecast(daily) {
 
 function displaySearchHistory(inputVal) {
     for(i = 0; i < localStorage.length; i++) {
+        var key = localStorage.key(i);
+        var value = localStorage.getItem(key);
+        
         var cityButton = document.createElement('button')
-        var result = localStorage.getItem('city', inputVal).charAt(0).toUpperCase() + localStorage.getItem('city', inputVal).slice(1).toLowerCase();
-
+//         var result = localStorage.getItem('city', inputVal).charAt(0).toUpperCase() + localStorage.getItem('city', inputVal).slice(1).toLowerCase();
+        var result = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
+        
         cityButton.textContent = result
         cityButton.setAttribute('class', 'col-12 btn btn-secondary')
         cityButton.setAttribute('type', 'button')
