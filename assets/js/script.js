@@ -65,7 +65,7 @@ function displayInfo(name, temp, wind_speed, humidity, uvi, icon) {
     displayDate.setAttribute('style', 'display: inline')
     span.setAttribute('id', 'uvSpan')
 
-    emojiCon.src = "http://openweathermap.org/img/wn/" + icon + "@2x.png"
+    emojiCon.src = "https://openweathermap.org/img/wn/" + icon + "@2x.png"
     
     displayDate.textContent = name + ' ' + dayEl + ' ' 
     tempEl.textContent = 'Temp: ' + temp + '°F'
@@ -113,7 +113,7 @@ function displayForecast(daily) {
         
         dateEl.textContent = fiveDaysDate
         console.log(daily[i].weather[0].icon)
-        imageEl.src = "http://openweathermap.org/img/wn/" + daily[i].weather[0].icon + "@2x.png"
+        imageEl.src = "https://openweathermap.org/img/wn/" + daily[i].weather[0].icon + "@2x.png"
         imageEl.setAttribute('style', 'width: 100px', 'height: auto')
         tempEl.textContent = 'Temp: ' + daily[i].temp.day+'°F'
         windEl.textContent = 'Wind: ' + daily[i].wind_speed + ' MPH'
