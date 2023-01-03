@@ -1,12 +1,15 @@
-var ApiKey = "977107925a46bf37b11eec5d9f053eb0"
+const ApiKey = '977107925a46bf37b11eec5d9f053eb0';
+
 var searchBtn = document.querySelector('#searchBtn')
 var dayEl = moment().format('(M/D/YYYY)')
 var cityInfo = document.querySelector('#city-info')
 var fiveDayForecast = document.querySelector('#fiveday')
 var ulEl = document.querySelector('#history')
 
+// This is for the search button of the search bar
 function searchButton () {
     var inputVal = document.querySelector('#cityInput').value
+
     if(inputVal.length !== 0) {
         var userInput = document.querySelector('#cityInput')
         
@@ -17,7 +20,7 @@ function searchButton () {
         fiveDayForecast.innerHTML = ''
 
         findCords(inputVal)
-        displaySearchHistory(inputVal)
+        // displaySearchHistory(inputVal)
     }
 }
 
@@ -27,7 +30,7 @@ function findCords(city) {
     fetch(queryURL)
     .then(response => response.json())
     .then(data => {
-        console.log(data)
+        // console.log(data)
         getWeather(data.name, data.coord.lon, data.coord.lat)
     })
     .catch(err => {
@@ -37,20 +40,21 @@ function findCords(city) {
 
 function getWeather(name, lon, lat) {
     var weatherURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=hourly,minutely&units=imperial&appid=" + ApiKey
-    console.log(lon, lat)
+    // console.log(lon, lat)
 
     fetch(weatherURL)
     .then(response => response.json())
     .then(data => {console.log(data)
         displayInfo(name, data.current.temp, data.current.wind_speed, data.current.humidity, data.current.uvi, data.current.weather[0].icon)
         displayForecast(data.daily)
-        console.log(data.daily[1])
+        // console.log(data.daily[1])
     })
 }
 
+// Bigger display for the current day
 function displayInfo(name, temp, wind_speed, humidity, uvi, icon) {
-    console.log(temp, wind_speed, humidity, uvi)
-    console.log(name)
+    // console.log(temp, wind_speed, humidity, uvi)
+    // console.log(name)
     var cityInfo = document.getElementById('city-info')
     var displayDate = document.createElement('h3')
     var emojiCon = document.createElement('img')
@@ -96,6 +100,7 @@ function displayInfo(name, temp, wind_speed, humidity, uvi, icon) {
     uvIndexEl.appendChild(span)
 }
 
+// Displays five day forecast
 function displayForecast(daily) {
     var fiveDay = document.querySelector('#fiveday')
 
@@ -112,7 +117,7 @@ function displayForecast(daily) {
         divEl.setAttribute('id', 'forecastDiv')
         
         dateEl.textContent = fiveDaysDate
-        console.log(daily[i].weather[0].icon)
+        // console.log(daily[i].weather[0].icon)
         imageEl.src = "https://openweathermap.org/img/wn/" + daily[i].weather[0].icon + "@2x.png"
         imageEl.setAttribute('style', 'width: 100px', 'height: auto')
         tempEl.textContent = 'Temp: ' + daily[i].temp.day+'°F'
@@ -128,24 +133,30 @@ function displayForecast(daily) {
     }
 }
 
-function displaySearchHistory(inputVal) {
-    for(i = 0; i < localStorage.length; i++) {
-        var key = localStorage.key(i);
-        var value = localStorage.getItem(key);
-        
-        var cityButton = document.createElement('button')
-//         var result = localStorage.getItem('city', inputVal).charAt(0).toUpperCase() + localStorage.getItem('city', inputVal).slice(1).toLowerCase();
-        var result = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
-        
-        cityButton.textContent = result
-        cityButton.setAttribute('class', 'col-12 btn btn-secondary')
-        cityButton.setAttribute('type', 'button')
-        cityButton.setAttribute('id', 'historyBtn')
+// function displaySearchHistory(inputVal) {
+//     const startIndex = Math.max(0, localStorage.length - 5);
+//     const localStorageItems = Object.keys(localStorage).slice(startIndex);
+//     // for(i = 0; i < localStorage.length; i++) {
+//     for (const key of localStorageItems) {
+//         // var value = inputVal
+//         var value = localStorage.getItem(key);
 
-        ulEl.appendChild(cityButton)
-    }
-}
+//         var cityButton = document.createElement('button')
+// //         var result = localStorage.getItem('city', inputVal).charAt(0).toUpperCase() + localStorage.getItem('city', inputVal).slice(1).toLowerCase();
+//         var result = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
+//         console.log(result + 'checkingbutton')
 
+//         cityButton.textContent = result
+//         cityButton.setAttribute('class', 'col-12 btn btn-secondary')
+//         cityButton.setAttribute('type', 'button')
+//         cityButton.setAttribute('id', 'historyBtn')
+
+//         ulEl.appendChild(cityButton) 
+//         console.log(localStorageItems)
+//     }
+// }
+
+// Clears the search bar after click submit
 ulEl.addEventListener('click', function(event){
     console.log(event.target.textContent)
     cityInfo.innerHTML = ''
