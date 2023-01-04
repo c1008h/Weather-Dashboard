@@ -1,5 +1,4 @@
 const ApiKey = '977107925a46bf37b11eec5d9f053eb0';
-
 var searchBtn = document.querySelector('#searchBtn')
 var dayEl = moment().format('(M/D/YYYY)')
 var cityInfo = document.querySelector('#city-info')
@@ -11,16 +10,19 @@ function searchButton () {
     var inputVal = document.querySelector('#cityInput').value
 
     if(inputVal.length !== 0) {
+
         var userInput = document.querySelector('#cityInput')
         
         localStorage.setItem('city', inputVal)
         userInput.value = ''
         
+    
         cityInfo.innerHTML = ''
         fiveDayForecast.innerHTML = ''
 
         findCords(inputVal)
         // displaySearchHistory(inputVal)
+        
     }
 }
 
@@ -157,11 +159,20 @@ function displayForecast(daily) {
 // }
 
 // Clears the search bar after click submit
-ulEl.addEventListener('click', function(event){
-    console.log(event.target.textContent)
-    cityInfo.innerHTML = ''
-    fiveDayForecast.innerHTML = ''
-    findCords(event.target.textContent)
-})
+// ulEl.addEventListener('click', function(event){
+//     console.log(event.target.textContent)
+//     cityInfo.innerHTML = ''
+//     fiveDayForecast.innerHTML = ''
+//     findCords(event.target.textContent)
 
+
+// })
+
+// searchBtn.addEventListener('click', searchButton)
 searchBtn.addEventListener('click', searchButton)
+
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+        searchButton()
+    }
+});
